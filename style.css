@@ -1,0 +1,140 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: poppin sans-serif;
+    box-sizing: border-box;
+}
+
+/*The container*/
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg,#4e085f , #2395b7);
+    padding: 10px;
+}
+
+/*The main box*/
+.todo-app{
+   width: 100%;
+   max-width: 750px;
+   min-height: 300px;
+   background: #fff;
+   margin: 10px auto 20px; 
+   padding: 40px 30px 70px;
+   border-radius: 10px;
+}
+
+/*The title of the the main page and the icon*/
+.todo-app h2{
+    color: #002765;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.todo-app h2 img{
+    width: 30px;
+    margin-left: 10px;
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+/*text input*/
+.input-container{
+    flex: 1;
+}
+
+.input-container input{
+    width: 100%;
+    padding: 13px 50px 13px 20px;
+    background: #eee;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+}
+
+.input-container input::placeholder{
+    color: #888;
+    font-weight: 400;
+}
+
+/*all buttonof the page*/
+.btn{
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+form .btn{
+    padding: 16px 50px;
+    background: rgb(8, 146, 184);
+}
+
+.btn-box .btn{
+    padding: 8px 10px;
+    background:rgb(41, 177, 215);
+    border-radius: 5px;
+}
+
+/*List of the tasks*/
+.task-list{
+    margin: 20px;
+}
+
+ul li{
+    list-style-type: none;
+    font-size: 17px;
+    padding: 12px 8px;
+    user-select: none;  
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #000;
+    border-radius: 3px;
+}
+
+ul li label{
+    flex: 1;
+    padding-left: 15px;
+}
+
+ul li .btn{
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+ul li .btn.delete{
+    background:rgb(208, 82, 82);
+}
+
+ul li .btn.edit{
+    background:rgb(82, 208, 189);
+    margin-right: 5px;
+}
+
+ul li input[type= "checkbox"]{
+    border-radius: 50%;
+    transform: scale(2);
+    accent-color: rgb(41, 177, 215);
+}
+
+/*task completed*/
+ul li.checked{
+    text-decoration: line-through;
+}

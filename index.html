@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" type="module" defer></script>
+</head>
+<body>
+    <div class="container">
+        <section class="todo-app">
+
+            <h2>TODO List  <img src="img/clker-free-vector-images-pencil-308509_1280.png" alt="icon"> </h2>
+            
+            <form action="">
+                <div class="input-container">
+                    <input type="text" placeholder="add task" id="input-box" required>
+                </div>
+                <button type="submit" class="btn" id="add-btn">Add</button>
+            </form>
+
+            <main>
+                <div class="btn-box">
+                    <button type="button" class="btn">All</button>
+                    <button type="button" class="btn">To do</button>
+                    <button type="button" class="btn">Done</button>
+                </div>
+                <div class="task-list">
+                    <ul>
+                        <li>
+                            <input type="checkbox" checked id="1"> 
+                            <label for="1">task1</label> 
+                            <button type="button" class="btn edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button type="button" class="btn delete"><i class="fa-solid fa-trash"></i></button>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="2"> 
+                            <label for="2">task1</label> 
+                            <button type="button" class="btn edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button type="button" class="btn delete"><i class="fa-solid fa-trash"></i></button>
+                        </li>
+                        <li>
+                            <input type="checkbox"  id="3"> 
+                            <label for="3">task1</label> 
+                            <button type="button" class="btn edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button type="button" class="btn delete"><i class="fa-solid fa-trash"></i></button>
+                        </li>
+                    </ul>
+                </div>
+
+            </main>
+
+        </section>
+
+    </div>
+    
+</body>
+</html>
