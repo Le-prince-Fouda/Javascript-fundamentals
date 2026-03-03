@@ -41,7 +41,10 @@ import { createElement } from "../functions/dom.js";
 
         //we delete the task/TodoItem when we click on the delete button
         btnDelete.addEventListener('click', (e) => this.remove(e))
-    
+
+        //We change the state of a task
+        checkbox.addEventListener('change', (e) => this.toggle(e.currentTarget))
+        
     }
 
     /**
@@ -68,6 +71,21 @@ import { createElement } from "../functions/dom.js";
     remove(e){
         e.preventDefault() // not too necessary
         this.#element.remove(); //we delete the current element
+    }
+
+    /**
+     * this methode change the state of the task to differentiate the finished tasks to the not completed task
+     * @param {HTMLElement} checkbox 
+     */
+    toggle(checkbox){
+        if(checkbox.checked){
+            //we add the class "completed" to a task (li) if his checkbox is checked
+            this.#element.classList.add('completed')
+        }else{
+            //and we remove the class the if it isn't
+            // all the unchecked checkboxes haven't the class "completed", even if the checkbox was initially checked
+            this.#element.classList.remove('completed')
+        }
     }
     
 }

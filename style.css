@@ -69,7 +69,7 @@ form{
     font-weight: 400;
 }
 
-/*all buttonof the page*/
+/*all button of the page*/
 .btn{
     border: none;
     outline: none;
@@ -84,11 +84,25 @@ form .btn{
     background: rgb(8, 146, 184);
 }
 
+/*filter button*/
 .btn-box .btn{
     padding: 8px 10px;
-    background:rgb(41, 177, 215);
     border-radius: 5px;
+    border: 2px solid rgb(41, 177, 215);
+    color: rgb(8, 146, 184);
+    background: none;
+    transition: background-color 0.9 ease-out;
 }
+
+.btn-box .btn:hover{
+    color: #fff;
+    background-color: rgb(8, 146, 184);
+}
+.btn.active{
+    color: #fff;
+    background-color: rgb(8, 146, 184);  
+}
+
 
 /*List of the tasks*/
 .task-list{
@@ -137,4 +151,9 @@ ul li input[type= "checkbox"]{
 /*task completed*/
 ul li.checked{
     text-decoration: line-through;
+}
+
+/*hide tasks after filtering*/
+ul li.hidden{
+    display: none;
 }
