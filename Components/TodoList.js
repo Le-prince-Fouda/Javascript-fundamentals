@@ -38,6 +38,9 @@ import { createElement } from "../functions/dom.js";
         li.append(btnDelete);
         // we save the li in a private attribute of our class
         this.#element = li
+
+        //we delete the task/TodoItem when we click on the delete button
+        btnDelete.addEventListener('click', (e) => this.remove(e))
     
     }
 
@@ -57,6 +60,14 @@ import { createElement } from "../functions/dom.js";
         return this.#element;
     }
 
-
+    /**
+     * This methode delete a TodoItem in the DOM
+     * 
+     * @param {HTMLElement} element 
+     */
+    remove(e){
+        e.preventDefault() // not too necessary
+        this.#element.remove(); //we delete the current element
+    }
     
 }
