@@ -15,10 +15,13 @@ function addTask(event){
         /**
          * if the user write a valide text as a tak
          * we create a new task 
-         * and we add it on the the tasklist (we display it on the scren)
+         * and we add it on the top of the tasklist (we display it on the scren)
          */
         const task = new TodoItem(inputBox.value)
-        task.appendTo(taskList)
+        taskList.prepend(task.element)
+
+        /**to add the task at the end of the task list */
+        // task.appendTo(taskList)
     }
     //we remove the text of the added task from the text field
     inputBox.value = ''

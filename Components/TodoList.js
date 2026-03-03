@@ -1,4 +1,9 @@
 import { createElement } from "../functions/dom.js";
+
+
+/**
+ * This class describe the process and the creation of one task (todoItem)
+ */
  export class TodoItem {
     #element
     /**
@@ -33,13 +38,25 @@ import { createElement } from "../functions/dom.js";
         li.append(btnDelete);
         // we save the li in a private attribute of our class
         this.#element = li
+    
     }
 
     /**
+     * This methode add a TodoItem in the DOM
      * 
      * @param {HTMLElement} element 
      */
     appendTo(element){
         element.append(this.#element);
     }
+
+    /**
+     * @returns {HTMLElement} 
+     */
+    get element (){
+        return this.#element;
+    }
+
+
+    
 }
