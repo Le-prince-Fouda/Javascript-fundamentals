@@ -4,6 +4,7 @@ import { TodoItem } from "./Components/TodoList.js";
 const inputBox = document.getElementById('input-box') //input field (to write our task)
 const taskList = document.querySelector('.task-list ul') // the element that content the task list
 const addButton = document.getElementById('add-btn') // the button to add a new task to the task list
+
 function addTask(event){
     // We are blocking the default action of our “Submit” button.
     //if we a "button" button instead of a "submit" button, the next line is useless
@@ -31,7 +32,54 @@ function addTask(event){
     }
     //we remove the text of the added task from the text field
     inputBox.value = ''
+    
 }
 
 //we call the function addTask when we click the add button (we add a new task when we click on Add)
 addButton.addEventListener('click', addTask)
+
+
+const button = document.querySelectorAll('.btn-box .btn');
+button.forEach(button => { 
+    button.addEventListener('click', e =>toggelFilter(e))
+});
+
+function toggelFilter(e){
+    e.preventDefault();
+    const filter = e.currentTarget.getAttribute('data-filter');
+    //this is the list of all created tasks
+    const tasksItem = taskList.children;
+    // we save the completed tsks
+    const completedTask = Array.from(tasksItem).filter(enfant => enfant.classList.contains('completed'))
+    //the 2 next lines active the right button (the one we click on)
+    e.currentTarget.parentElement.querySelector('.active').classList.remove('active');
+    e.currentTarget.classList.add('active');
+    // We hide all the tasks
+    Array.from(tasksItem).forEach(task => task.classList.add('hidden'));
+    if(filter === 'all'){
+         Array.from(tasksItem).forEach(task => task.classList.remove('hidden'));
+
+    }else if(filter === 'todo'){
+        Array.from(tasksItem).forEach(task => task.classList.remove('hidden'));
+        Array.from(completedTask).forEach(task => task.classList.add('hidden'));
+
+
+    }else if(filter === 'done'){
+         Array.from(completedTask).forEach(task => task.classList.remove('hidden'));
+    }
+
+
+
+
+
+  
+
+    console.log(completedTask)
+    // console.log(taskList.children)
+
+    // completedTask.forEach(result => console.log(el.dataset.filter));
+
+
+
+}
+
