@@ -29,7 +29,7 @@ function addTask(event){
     
 }
 
-//we call the function addTask when we click the add button (we add a new task when we click on Add)
+//we call the function addTask when we click the "add" button (we add a new task when we click on "Add")
 addButton.addEventListener('click', addTask)
 
 
@@ -38,12 +38,16 @@ button.forEach(button => {
     button.addEventListener('click', e =>toggelFilter(e))
 });
 
+/**
+ * This function is used to filter tasks according to their status: all, to do, done.
+ * @param {*} e 
+ */
 function toggelFilter(e){
     e.preventDefault();
     const filter = e.currentTarget.getAttribute('data-filter');
     //this is the list of all created tasks
     const tasksItem = taskList.children;
-    // we save the completed tsks
+    // we save the completed tasks
     const completedTask = Array.from(tasksItem).filter(enfant => enfant.classList.contains('completed'))
     //the 2 next lines active the right button (the one we click on)
     e.currentTarget.parentElement.querySelector('.active').classList.remove('active');
@@ -61,10 +65,6 @@ function toggelFilter(e){
     }else if(filter === 'done'){
          Array.from(completedTask).forEach(task => task.classList.remove('hidden'));
     }
-
-
-
-
 
   
 
