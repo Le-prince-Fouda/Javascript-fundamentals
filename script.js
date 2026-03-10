@@ -20,6 +20,18 @@ function addTask(event){
          */
         const task = new TodoItem(inputBox.value)
         taskList.prepend(task.element)
+        
+        // this contante save the text of the active filter button
+        const activeFilterButton = document.querySelector('.active').textContent;
+
+        /**
+         * all the added tasks are to do tasks so
+         * we add the task, but we diplay it only in the two case:
+         * "All" filter button is active or "To do" filter button is active
+         */
+        if(activeFilterButton !== 'All' && activeFilterButton !== 'To do'){
+            task.element.classList.add('hidden')
+        }
 
         /**to add the task at the end of the task list */
         // task.appendTo(taskList)
