@@ -6,11 +6,13 @@ import { createElement } from "../functions/dom.js";
  */
  export class TodoItem {
     #element
+    #todo
     /**
      * 
      * @param {string} todo 
      */
     constructor(todo){
+        this.#todo = todo //?????????????
         const todoID = todo.replaceAll(" ", ""); //Remove all spaces inside and outside the character string.
         const li = createElement('li')
         const checkbox = createElement('input', {
@@ -70,7 +72,22 @@ import { createElement } from "../functions/dom.js";
      */
     remove(e){
         e.preventDefault() // not too necessary
-        this.#element.remove(); //we delete the current element
+
+        // we create a new custom event "delete"
+        const event = new CustomEvent('delete', {
+            detail: this.#todo,
+            bubbles: true,
+            cancelable: true
+        })
+        //we dispatchEvent the "delete" event
+        this.#element.dispatchEvent(event)
+        //if the "delete" event is call with "preventDefault", we do nothing (we block the normal behaviour of the event)
+        if(event.defaultPrevented){
+            return
+        }
+
+        //we delete the current element
+        this.#element.remove(); 
     }
 
     /**
@@ -86,6 +103,21 @@ import { createElement } from "../functions/dom.js";
             // all the unchecked checkboxes haven't the class "completed", even if the checkbox was initially checked
             this.#element.classList.remove('completed')
         }
+
+        // we create a new custom event "toggle" to indicate the change on the checkbox
+        const event = new CustomEvent('toggle', {
+            detail: this.#todo,
+            bubbles: true,
+        })
+        //we dispatchEvent the "toggle" event
+        this.#element.dispatchEvent(event)
+    }
+
+    /**
+     * 
+     */
+    onUpdate(){
+        localStorage.setItem('todos', JSON.stringify(this.#element))
     }
     
 }

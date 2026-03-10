@@ -47,6 +47,7 @@ function toggelFilter(e){
     const filter = e.currentTarget.getAttribute('data-filter');
     //this is the list of all created tasks
     const tasksItem = taskList.children;
+    console.log(tasksItem)
     // we save the completed tasks
     const completedTask = Array.from(tasksItem).filter(enfant => enfant.classList.contains('completed'))
     //the 2 next lines active the right button (the one we click on)
