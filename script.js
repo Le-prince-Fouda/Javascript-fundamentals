@@ -19,6 +19,12 @@ function addTask(event){
          */
         const task = new TodoItem(inputBox.value)
         taskList.prepend(task.element)
+        const activeFilterButton = document.querySelector('.active').textContent;
+        if(activeFilterButton === 'All' || activeFilterButton === 'To do'){
+
+        }else{
+            
+        }
 
         /**to add the task at the end of the task list */
         // task.appendTo(taskList)
