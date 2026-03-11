@@ -37,22 +37,20 @@ function addTask(event){
         // task.appendTo(taskList)
     }
     //we remove the text of the added task from the text field
-    inputBox.value = ''
-    
+    inputBox.value = '' 
 }
-
 //we call the function addTask when we click the "add" button (we add a new task when we click on "Add")
 addButton.addEventListener('click', addTask)
 
 
+
+/************* filter *************/
 const button = document.querySelectorAll('.btn-box .btn');
 button.forEach(button => { 
     button.addEventListener('click', e =>toggelFilter(e))
 });
-
 /**
  * This function is used to filter tasks according to their status: all, to do, done.
- * @param {*} e 
  */
 function toggelFilter(e){
     e.preventDefault();
@@ -79,14 +77,28 @@ function toggelFilter(e){
          Array.from(completedTask).forEach(task => task.classList.remove('hidden'));
     }
 
-  
-
     console.log(completedTask)
     // console.log(taskList.children)
-
     // completedTask.forEach(result => console.log(el.dataset.filter));
-
-
-
 }
 
+
+/*************** Adapt the filtering********************/
+taskList.addEventListener('toggle', (e)=> selfToggelFilter(e))
+/**
+ * if a stain no longer matches a filter, it disappears (we hide it)
+ */
+const selfToggelFilter = (e) => {
+    //we save the current filter btn
+    const activeFilter = document.querySelector('.btn.active').getAttribute('data-filter');
+    //we save the the element that have emit the toggle event
+    const taskElement = e.target;
+    //the task is hide if we are in the "todo" filter and we check it
+    if(activeFilter === 'todo' && taskElement.classList.contains('completed')){
+        taskElement.classList.add('hidden');
+    //the task is hide if we are in the "done" filter and we uncheck it
+    }else if(activeFilter === 'done' && !taskElement.classList.contains('completed')){
+        taskElement.classList.add('hidden');
+
+    }
+};
