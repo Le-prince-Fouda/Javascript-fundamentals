@@ -165,7 +165,7 @@ if(todosInStorage){
             taskList.append(task.element);
         })
     }catch (e){
-        console.error('An error appear by reading localstorage')
+        console.error('An error appear by reading localstorage', e)
     }
 }
 
