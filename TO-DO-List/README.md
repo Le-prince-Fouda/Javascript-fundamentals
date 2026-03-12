@@ -39,7 +39,7 @@ This project focuses on practicing core JavaScript concepts such as **DOM manipu
 
 ## 🚀 Live Demo
 
-[demo TO-DO-List](https://www.exemple.com)
+[demo TO-DO-List](https://le-prince-fouda.github.io/Javascript-fundamentals/TO-DO-List/)
 
 ---
 
