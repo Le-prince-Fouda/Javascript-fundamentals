@@ -5,6 +5,7 @@ const inputBox = document.getElementById('input-box') //input field (to write ou
 const taskList = document.querySelector('.task-list ul') // the element that content the task list
 const addButton = document.getElementById('add-btn') // the button to add a new task to the task list
 
+/****************************task adding***************************** */
 function addTask(event){
     // We are blocking the default action of our “Submit” button.
     //if we a "button" button instead of a "submit" button, the next line is useless
@@ -20,6 +21,9 @@ function addTask(event){
          */
         const task = new TodoItem(inputBox.value)
         taskList.prepend(task.element)
+
+        //we update the LocalStorage to ad this task
+        update()
         
         // this contante save the text of the active filter button
         const activeFilterButton = document.querySelector('.active').textContent;
@@ -101,4 +105,70 @@ const selfToggelFilter = (e) => {
         taskElement.classList.add('hidden');
 
     }
+    taskElement.onu
 };
+
+
+
+/******************add and save task in localstorage************************/
+const update = () => {
+     // we take the "taskList" as a table and 
+     // for each task we save the title of the task and we note if it completed or not
+    const todosData = Array.from(taskList.children).map(li => {
+        return {
+            title: li.querySelector('label').innerText, //we save the title of the task
+            completed: li.classList.contains('completed') //we not if the task is completed or not
+        };
+    });
+
+    // we convert our object table in JSON file and we save it in the LocalStorage
+    localStorage.setItem('todos', JSON.stringify(todosData));
+};
+
+//we update the LocalStorage by removing of a task (delete event) and by status changing (toggle event)
+//we have also update the LocalStorage in the "addTask" function (up)
+taskList.addEventListener('toggle', ()=> update())
+taskList.addEventListener('delete', ()=> {
+    //We wait for the "remove" method of file "TodoList.js" to execute before starting to execute "update" function after the "delete" event.
+    //we wait a short moment
+    /**
+     * setTimeout(0) is necessary because dispatchEvent is synchronous.
+     * We delay update() in the queue to ensure that it executes 
+     * AFTER the element has actually been removed from the DOM by the ‘.remove()’ method.
+     */
+    setTimeout(() => update(), 0)
+})
+
+
+
+/******************display task saved in LocalStorage************************/
+const todosInStorage = localStorage.getItem('todos')
+let todos = []
+if(todosInStorage){
+    try {
+        //the localstorage variable "todosInStorage" is a string
+        //we transfor it into a table (a table of objects)
+        const savedtodos = JSON.parse(todosInStorage);
+        //for each data of of "savedtodos" we create an object "todoItem" which represent a task
+        savedtodos.forEach( todosData => {
+            const task = new TodoItem(todosData.title);
+            //if we must show that the task was already completed 
+            if(todosData.completed){
+                //we access to the checkbox of our task
+                const checkbox = task.element.querySelector('input[type="checkbox"]');
+                // and we checked the checkbox
+                checkbox.checked = true;
+                //we add the class "completed" to our completed task
+                task.toggle(checkbox) 
+            }
+            //we add the task in the tasklist
+            taskList.append(task.element);
+        })
+    }catch (e){
+        console.error('An error appear by reading localstorage')
+    }
+}
+
+
+
+

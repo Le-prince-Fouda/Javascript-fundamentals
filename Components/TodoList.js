@@ -5,7 +5,9 @@ import { createElement } from "../functions/dom.js";
  * This class describe the process and the creation of one task (todoItem)
  */
  export class TodoItem {
+    /**HTMLElement */
     #element
+
     #todo
     /**
      * 
@@ -22,7 +24,7 @@ import { createElement } from "../functions/dom.js";
         const label = createElement('label', {
             for: todoID
         })
-        label.innerHTML= todo;
+        label.textContent= todo;
         const btnEdit = createElement('button', {
             type:"button",
             class:"btn edit"
@@ -42,10 +44,14 @@ import { createElement } from "../functions/dom.js";
         this.#element = li
 
         //we delete the task/TodoItem when we click on the delete button
-        btnDelete.addEventListener('click', (e) => this.remove(e))
+        btnDelete.addEventListener('click', (e) => {
+            this.remove(e)
+        })
 
         //We change the state of a task
-        checkbox.addEventListener('change', (e) => this.toggle(e.currentTarget))
+        checkbox.addEventListener('change', (e) => {
+            this.toggle(e.currentTarget)
+        })
         
     }
 
@@ -85,7 +91,7 @@ import { createElement } from "../functions/dom.js";
         if(event.defaultPrevented){
             return
         }
-
+//********** ***********        this.onUpdate();
         //we delete the current element
         this.#element.remove(); 
     }
@@ -111,13 +117,6 @@ import { createElement } from "../functions/dom.js";
         })
         //we dispatchEvent the "toggle" event
         this.#element.dispatchEvent(event)
-    }
-
-    /**
-     * 
-     */
-    onUpdate(){
-        localStorage.setItem('todos', JSON.stringify(this.#element))
     }
     
 }
